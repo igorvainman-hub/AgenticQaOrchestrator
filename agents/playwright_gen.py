@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import re
 
 from agents.base import BaseAgent
 
@@ -15,6 +14,9 @@ class PlaywrightGeneratorAgent(BaseAgent):
         user_content = json.dumps(payload)
 
         def parse(raw: str) -> str:
-            return re.sub(r"```(?:typescript|ts)?|```", "", raw).strip()
+            cleaned = self._strip_code_fences(raw)
+            if not cleaned:
+                raise ValueError("Empty response from PlaywrightGeneratorAgent")
+            return cleaned
 
         return self._invoke_with_retry(user_content, parse, "PlaywrightGeneratorAgent")

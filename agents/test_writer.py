@@ -13,12 +13,13 @@ class TestWriterAgent(BaseAgent):
         user_content = json.dumps(scenarios)
 
         def parse(raw: str) -> str:
-            if not raw.strip():
+            cleaned = self._strip_code_fences(raw)
+            if not cleaned:
                 raise ValueError("Empty response from TestWriterAgent")
-            if "#" not in raw:
+            if "#" not in cleaned:
                 raise ValueError("Response missing heading marker '#'")
-            if len(raw.split()) < 5:
+            if len(cleaned.split()) < 5:
                 raise ValueError("Response too short")
-            return raw
+            return cleaned
 
         return self._invoke_with_retry(user_content, parse, "TestWriterAgent")

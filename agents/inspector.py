@@ -56,8 +56,11 @@ class _SelectorMapperAgent(BaseAgent):
         ])
 
         def parse(raw: str) -> dict[str, Any]:
-            raw = raw.strip()
-            return json.loads(raw)
+            return self._parse_json_object_response(
+                raw,
+                step_name="SelectorMapper",
+                required_keys=("selectors",),
+            )
 
         return self._invoke_with_retry(payload, parse, "SelectorMapper")
 
