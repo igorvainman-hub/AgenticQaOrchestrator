@@ -1,0 +1,9 @@
+.env
+credentials/
+results/
+__pycache__/
+.venv/
+.git/
+tests/
+poll_and_run.py
+*.pyc

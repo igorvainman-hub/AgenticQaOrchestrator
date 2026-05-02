@@ -1,0 +1,12 @@
+.env
+credentials/
+results/*
+!results/.gitkeep
+__pycache__/
+.venv/
+*.pyc
+.uv/
+node_modules/
+playwright-report/
+test-results/
+new_feature.txt

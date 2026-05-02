@@ -1,0 +1,12 @@
+{
+  "name": "agenticqa-orchestrator-tests",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "extract-url": "node scripts/extract_base_url.js"
+  }
+}
